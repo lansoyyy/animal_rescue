@@ -1,3 +1,6 @@
+import 'package:animal_rescue/utils/colors.dart';
+import 'package:animal_rescue/widgets/button_widget.dart';
+import 'package:animal_rescue/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -5,6 +8,50 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: primary,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/illu.png',
+                height: 350,
+                width: 350,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextWidget(
+                text: 'Help',
+                fontSize: 48,
+                color: Colors.white,
+                fontFamily: 'Bold',
+              ),
+              TextWidget(
+                text: 'Animals',
+                fontSize: 48,
+                color: Colors.white,
+                fontFamily: 'Bold',
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ButtonWidget(
+                color: Colors.white,
+                textColor: Colors.green,
+                label: 'Get Started',
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -1,11 +1,10 @@
-import 'package:animal_rescue/screens/main_home_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/button_widget.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class MainHomeScreen extends StatelessWidget {
+  const MainHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/illu.png',
+                'assets/images/dog.png',
                 height: 350,
                 width: 350,
               ),
@@ -47,10 +46,7 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.white,
                 textColor: Colors.green,
                 label: 'Get Started',
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const MainHomeScreen()));
-                },
+                onPressed: () {},
               ),
             ],
           ),

@@ -1,3 +1,4 @@
+import 'package:animal_rescue/screens/add_report_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/drawer_widget.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
@@ -12,7 +13,7 @@ class MainHomeScreen extends StatefulWidget {
 
 class _MainHomeScreenState extends State<MainHomeScreen> {
   List tabs = [
-    const SizedBox(),
+    const AddReportPage(),
     const SizedBox(),
     const SizedBox(),
   ];
@@ -46,43 +47,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: primary,
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/dog.png',
-                height: 350,
-                width: 350,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextWidget(
-                text: 'Help',
-                fontSize: 48,
-                color: Colors.white,
-                fontFamily: 'Bold',
-              ),
-              TextWidget(
-                text: 'Animals',
-                fontSize: 48,
-                color: Colors.white,
-                fontFamily: 'Bold',
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-            ],
-          ),
-        ),
-      ),
+      body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedLabelStyle: const TextStyle(fontFamily: 'Bold', fontSize: 10),
         unselectedLabelStyle: const TextStyle(fontFamily: 'Bold', fontSize: 10),

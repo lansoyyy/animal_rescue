@@ -1,4 +1,5 @@
 import 'package:animal_rescue/screens/add_report_screen.dart';
+import 'package:animal_rescue/screens/messages_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/drawer_widget.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
@@ -14,7 +15,7 @@ class MainHomeScreen extends StatefulWidget {
 class _MainHomeScreenState extends State<MainHomeScreen> {
   List tabs = [
     const AddReportPage(),
-    const SizedBox(),
+    const MessagesScreen(),
     const SizedBox(),
   ];
 

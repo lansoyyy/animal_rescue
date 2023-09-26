@@ -1,5 +1,6 @@
 import 'package:animal_rescue/screens/add_report_screen.dart';
 import 'package:animal_rescue/screens/messages_screen.dart';
+import 'package:animal_rescue/screens/profile_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/drawer_widget.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
@@ -16,7 +17,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   List tabs = [
     const AddReportPage(),
     const MessagesScreen(),
-    const SizedBox(),
+    const ProfileScreen(),
   ];
 
   void onTabTapped(int index) {
@@ -31,14 +32,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const DrawerWidget(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.white,
-        child: Icon(
-          Icons.add,
-          color: primary,
-        ),
-      ),
       appBar: AppBar(
         backgroundColor: primary,
         title: TextWidget(

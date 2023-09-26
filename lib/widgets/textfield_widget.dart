@@ -1,3 +1,4 @@
+import 'package:animal_rescue/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatefulWidget {
@@ -66,7 +67,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: 'Bold',
-                  color: Colors.amber[800],
+                  color: primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),

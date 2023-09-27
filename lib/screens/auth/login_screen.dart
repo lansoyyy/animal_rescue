@@ -51,6 +51,8 @@ class LoginScreen extends StatelessWidget {
               label: 'Login',
               onPressed: () {
                 // login(context);
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               },
             ),
             const SizedBox(

@@ -1,4 +1,3 @@
-import 'package:animal_rescue/screens/main_home_screen.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -49,8 +48,8 @@ class _MyDrawerState extends State<DrawerWidget> {
                 color: Colors.black,
               ),
               onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const MainHomeScreen()));
+                // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                //     builder: (context) => const MainHomeScreen()));
               },
             ),
             ListTile(
@@ -60,8 +59,8 @@ class _MyDrawerState extends State<DrawerWidget> {
                 color: Colors.black,
               ),
               onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const MainHomeScreen()));
+                // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                //     builder: (context) => const MainHomeScreen()));
               },
             ),
             ListTile(
@@ -71,8 +70,8 @@ class _MyDrawerState extends State<DrawerWidget> {
                 color: Colors.black,
               ),
               onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const MainHomeScreen()));
+                // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                //     builder: (context) => const MainHomeScreen()));
               },
             ),
             ListTile(

@@ -1,4 +1,5 @@
 import 'package:animal_rescue/screens/auth/signup_screen.dart';
+import 'package:animal_rescue/screens/home_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -24,13 +25,10 @@ class LoginScreen extends StatelessWidget {
             ),
             Center(
               child: Image.asset(
-                'assets/images/illu.png',
+                'assets/images/Logo.png',
                 width: 350,
                 height: 250,
               ),
-            ),
-            const SizedBox(
-              height: 20,
             ),
             TextFieldWidget(
               label: 'Email',
@@ -51,8 +49,8 @@ class LoginScreen extends StatelessWidget {
               label: 'Login',
               onPressed: () {
                 // login(context);
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const HomeScreen()));
               },
             ),
             const SizedBox(

@@ -1,4 +1,5 @@
 import 'package:animal_rescue/screens/aboutus_screen.dart';
+import 'package:animal_rescue/screens/rescue_request_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/button_widget.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
@@ -59,7 +60,10 @@ class HomeScreen extends StatelessWidget {
               ButtonWidget(
                 width: 250,
                 label: 'Request a Rescue',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const RescueRequestScreen()));
+                },
               ),
               const SizedBox(
                 height: 20,

@@ -1,4 +1,6 @@
 import 'package:animal_rescue/screens/aboutus_screen.dart';
+import 'package:animal_rescue/screens/profile_screen.dart';
+import 'package:animal_rescue/screens/request_history_screen.dart';
 import 'package:animal_rescue/screens/rescue_request_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/button_widget.dart';
@@ -77,7 +79,11 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const RequestHistoryScreen()));
+                        },
                         icon: Icon(
                           Icons.calendar_month_outlined,
                           color: primary,
@@ -100,7 +106,10 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const ProfileScreen()));
+                        },
                         icon: Icon(
                           Icons.account_circle_outlined,
                           color: primary,

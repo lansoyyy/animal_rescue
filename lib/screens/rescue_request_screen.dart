@@ -195,6 +195,9 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
                           onPressed: () {},
                         ),
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                 ),

@@ -1,3 +1,4 @@
+import 'package:animal_rescue/screens/request_history_screen.dart';
 import 'package:animal_rescue/widgets/button_widget.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
 import 'package:animal_rescue/widgets/textfield_widget.dart';
@@ -192,7 +193,11 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
                       Center(
                         child: ButtonWidget(
                           label: 'Send Request',
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const RequestHistoryScreen()));
+                          },
                         ),
                       ),
                       const SizedBox(

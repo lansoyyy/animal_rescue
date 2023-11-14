@@ -1,4 +1,4 @@
-import 'package:animal_rescue/screens/admin/admin_main_screen.dart';
+import 'package:animal_rescue/screens/admin/admin_request_screen.dart';
 import 'package:animal_rescue/screens/auth/signup_screen.dart';
 import 'package:animal_rescue/screens/home_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
@@ -9,11 +9,8 @@ import '../../widgets/button_widget.dart';
 import '../../widgets/text_widget.dart';
 import '../../widgets/textfield_widget.dart';
 
-class LoginScreen extends StatelessWidget {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  LoginScreen({super.key});
+class AdminMainScreen extends StatelessWidget {
+  const AdminMainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,65 +29,61 @@ class LoginScreen extends StatelessWidget {
                 height: 250,
               ),
             ),
-            TextFieldWidget(
-              label: 'Email',
-              controller: emailController,
-            ),
             const SizedBox(
               height: 20,
             ),
-            TextFieldWidget(
-              isObscure: true,
-              label: 'Password',
-              controller: passwordController,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ButtonWidget(
-              label: 'Login',
-              onPressed: () {
-                // login(context);
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const HomeScreen()));
+            ListTile(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AdminRequestScreen()));
               },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextWidget(
-                  text: 'Not registered?',
-                  fontSize: 12,
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => SignupScreen()));
-                  },
-                  child: TextWidget(
-                    fontFamily: 'Bold',
-                    text: 'Signup now',
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => AdminMainScreen()));
-              },
-              child: TextWidget(
-                fontFamily: 'Bold',
-                text: 'Continue as Admin',
-                fontSize: 14,
+              leading: CircleAvatar(
+                  minRadius: 50,
+                  maxRadius: 50,
+                  child: Image.asset('assets/images/jay.png')),
+              title: TextWidget(
+                text: 'Jay Lorence Pati-on',
+                fontSize: 18,
                 color: primary,
+                fontFamily: 'Bold',
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AdminRequestScreen()));
+              },
+              leading: CircleAvatar(
+                  minRadius: 50,
+                  maxRadius: 50,
+                  child: Image.asset('assets/images/loy.png')),
+              title: TextWidget(
+                text: 'Leonil Lugod',
+                fontSize: 18,
+                color: primary,
+                fontFamily: 'Bold',
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AdminRequestScreen()));
+              },
+              leading: CircleAvatar(
+                  minRadius: 50,
+                  maxRadius: 50,
+                  child: Image.asset('assets/images/sar.png')),
+              title: TextWidget(
+                text: 'Sarfeil Dave Curran',
+                fontSize: 18,
+                color: primary,
+                fontFamily: 'Bold',
               ),
             ),
           ],

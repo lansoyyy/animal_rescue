@@ -1,4 +1,5 @@
 import 'package:animal_rescue/screens/aboutus_screen.dart';
+import 'package:animal_rescue/screens/auth/login_screen.dart';
 import 'package:animal_rescue/screens/profile_screen.dart';
 import 'package:animal_rescue/screens/request_history_screen.dart';
 import 'package:animal_rescue/screens/rescue_request_screen.dart';
@@ -15,121 +16,164 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const AboutusScreen()));
-                    },
-                    icon: Icon(
-                      Icons.info_rounded,
-                      color: primary,
-                      size: 32,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const AboutusScreen()));
+                      },
+                      icon: Icon(
+                        Icons.info_rounded,
+                        color: primary,
+                        size: 32,
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.logout,
-                      color: primary,
-                      size: 32,
+                    IconButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: const Text(
+                                    'Logout Confirmation',
+                                    style: TextStyle(
+                                        fontFamily: 'QBold',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  content: const Text(
+                                    'Are you sure you want to Logout?',
+                                    style: TextStyle(fontFamily: 'QRegular'),
+                                  ),
+                                  actions: <Widget>[
+                                    MaterialButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(true),
+                                      child: const Text(
+                                        'Close',
+                                        style: TextStyle(
+                                            fontFamily: 'QRegular',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    MaterialButton(
+                                      onPressed: () async {
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LoginScreen()));
+                                      },
+                                      child: const Text(
+                                        'Continue',
+                                        style: TextStyle(
+                                            fontFamily: 'QRegular',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                ));
+                      },
+                      icon: Icon(
+                        Icons.logout,
+                        color: primary,
+                        size: 32,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Center(
-                child: Image.asset(
-                  'assets/images/Logo.png',
-                  width: 300,
-                  height: 125,
+                  ],
                 ),
-              ),
-              Center(
-                child: Image.asset(
-                  'assets/images/dog.png',
-                  width: 400,
-                  height: 350,
+                Center(
+                  child: Image.asset(
+                    'assets/images/Logo.png',
+                    width: 300,
+                    height: 125,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              ButtonWidget(
-                width: 250,
-                label: 'Request a Rescue',
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const RescueRequestScreen()));
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const RequestHistoryScreen()));
-                        },
-                        icon: Icon(
-                          Icons.calendar_month_outlined,
-                          color: primary,
-                          size: 48,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextWidget(
-                        text: '   Request History',
-                        fontSize: 12,
-                        fontFamily: 'Bold',
-                        color: Colors.black,
-                      ),
-                    ],
+                Center(
+                  child: Image.asset(
+                    'assets/images/dog.png',
+                    width: 400,
+                    height: 350,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const ProfileScreen()));
-                        },
-                        icon: Icon(
-                          Icons.account_circle_outlined,
-                          color: primary,
-                          size: 48,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                ButtonWidget(
+                  width: 250,
+                  label: 'Request a Rescue',
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const RescueRequestScreen()));
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const RequestHistoryScreen()));
+                          },
+                          icon: Icon(
+                            Icons.calendar_month_outlined,
+                            color: primary,
+                            size: 48,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextWidget(
-                        text: '       Profile',
-                        fontSize: 12,
-                        fontFamily: 'Bold',
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextWidget(
+                          text: '   Request History',
+                          fontSize: 12,
+                          fontFamily: 'Bold',
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const ProfileScreen()));
+                          },
+                          icon: Icon(
+                            Icons.account_circle_outlined,
+                            color: primary,
+                            size: 48,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextWidget(
+                          text: '       Profile',
+                          fontSize: 12,
+                          fontFamily: 'Bold',
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -136,57 +136,6 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Send Request to',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Bold',
-                                color: primary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const TextSpan(
-                              text: '*',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Bold',
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          for (int i = 0; i < 3; i++)
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/profile.png',
-                                  height: 75,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                TextWidget(
-                                  text: 'John Doe',
-                                  fontSize: 14,
-                                  fontFamily: 'Bold',
-                                ),
-                              ],
-                            )
-                        ],
-                      ),
                       const SizedBox(
                         height: 20,
                       ),

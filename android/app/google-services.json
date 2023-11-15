@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "212310255902",
+    "project_id": "animal-rescue-5088e",
+    "storage_bucket": "animal-rescue-5088e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212310255902:android:760a14a087505e61c8010f",
+        "android_client_info": {
+          "package_name": "com.example.animal_rescue"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOafoKwkgsz0npjpEcE_K69HgyktgQJto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

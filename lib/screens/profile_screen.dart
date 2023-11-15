@@ -59,19 +59,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(
                 height: 10,
               ),
-              TextFieldWidget(label: 'Email', controller: emailController),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFieldWidget(
-                label: 'Password',
-                controller: passwordController,
-                isObscure: true,
-                showEye: true,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
               TextFieldWidget(
                 label: 'Address',
                 controller: addressController,

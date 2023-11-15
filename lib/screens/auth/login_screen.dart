@@ -2,6 +2,8 @@ import 'package:animal_rescue/screens/admin/admin_main_screen.dart';
 import 'package:animal_rescue/screens/auth/signup_screen.dart';
 import 'package:animal_rescue/screens/home_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
+import 'package:animal_rescue/widgets/toast_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
@@ -51,8 +53,7 @@ class LoginScreen extends StatelessWidget {
               label: 'Login',
               onPressed: () {
                 // login(context);
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const HomeScreen()));
+                login(context);
               },
             ),
             const SizedBox(
@@ -83,8 +84,8 @@ class LoginScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => AdminMainScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AdminMainScreen()));
               },
               child: TextWidget(
                 fontFamily: 'Bold',
@@ -97,6 +98,30 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  login(context) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      showToast('Logged in succesfully!');
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        showToast("No user found with that email.");
+      } else if (e.code == 'wrong-password') {
+        showToast("Wrong password provided for that user.");
+      } else if (e.code == 'invalid-email') {
+        showToast("Invalid email provided.");
+      } else if (e.code == 'user-disabled') {
+        showToast("User account has been disabled.");
+      } else {
+        showToast("An error occurred: ${e.message}");
+      }
+    } on Exception catch (e) {
+      showToast("An error occurred: $e");
+    }
   }
 
   // login(context) async {

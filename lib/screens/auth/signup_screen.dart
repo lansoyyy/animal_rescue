@@ -1,3 +1,7 @@
+import 'package:animal_rescue/screens/home_screen.dart';
+import 'package:animal_rescue/services/add_announcements.dart';
+import 'package:animal_rescue/widgets/toast_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/button_widget.dart';
@@ -71,7 +75,7 @@ class SignupScreen extends StatelessWidget {
               ButtonWidget(
                 label: 'Signup',
                 onPressed: () {
-                  // register(context);
+                  register(context);
                 },
               ),
               const SizedBox(
@@ -84,32 +88,33 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
-  // register(context) async {
-  //   try {
-  //     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //         email: emailController.text, password: passwordController.text);
+  register(context) async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
 
-  //     // addUser(nameController.text, contactnumberController.text,
-  //     //     addressController.text, emailController.text);
+      // add
 
-  //     addUser(nameController.text, contactnumberController.text,
-  //         addressController.text, emailController.text);
+      addUser(nameController.text, contactnumberController.text,
+          addressController.text, emailController.text);
 
-  //     showToast('Account created succesfully!');
-  //     Navigator.of(context).pushReplacement(
-  //         MaterialPageRoute(builder: (context) => const HomeScreen()));
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'weak-password') {
-  //       showToast('The password provided is too weak.');
-  //     } else if (e.code == 'email-already-in-use') {
-  //       showToast('The account already exists for that email.');
-  //     } else if (e.code == 'invalid-email') {
-  //       showToast('The email address is not valid.');
-  //     } else {
-  //       showToast(e.toString());
-  //     }
-  //   } on Exception catch (e) {
-  //     showToast("An error occurred: $e");
-  //   }
-  // }
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+
+      showToast('Account created succesfully!');
+      MaterialPageRoute(builder: (context) => const HomeScreen());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        showToast('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        showToast('The account already exists for that email.');
+      } else if (e.code == 'invalid-email') {
+        showToast('The email address is not valid.');
+      } else {
+        showToast(e.toString());
+      }
+    } on Exception catch (e) {
+      showToast("An error occurred: $e");
+    }
+  }
 }

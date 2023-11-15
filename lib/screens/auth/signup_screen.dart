@@ -102,7 +102,8 @@ class SignupScreen extends StatelessWidget {
           email: emailController.text, password: passwordController.text);
 
       showToast('Account created succesfully!');
-      MaterialPageRoute(builder: (context) => const HomeScreen());
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showToast('The password provided is too weak.');

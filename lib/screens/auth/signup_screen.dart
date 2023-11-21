@@ -1,4 +1,4 @@
-import 'package:animal_rescue/screens/home_screen.dart';
+import 'package:animal_rescue/screens/home_tab.dart';
 import 'package:animal_rescue/services/add_announcements.dart';
 import 'package:animal_rescue/widgets/toast_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -103,7 +103,7 @@ class SignupScreen extends StatelessWidget {
 
       showToast('Account created succesfully!');
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeScreen()));
+          MaterialPageRoute(builder: (context) => const HomeTab()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showToast('The password provided is too weak.');

@@ -1,6 +1,6 @@
 import 'package:animal_rescue/screens/admin/admin_main_screen.dart';
 import 'package:animal_rescue/screens/auth/signup_screen.dart';
-import 'package:animal_rescue/screens/home_screen.dart';
+import 'package:animal_rescue/screens/home_tab.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/toast_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -106,7 +106,7 @@ class LoginScreen extends StatelessWidget {
           email: emailController.text, password: passwordController.text);
       showToast('Logged in succesfully!');
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeScreen()));
+          MaterialPageRoute(builder: (context) => const HomeTab()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         showToast("No user found with that email.");

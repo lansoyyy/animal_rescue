@@ -46,6 +46,7 @@ dependencies:
   geolocator: ^9.0.2
   google_maps_flutter:
   intl:
+  carousel_slider:
 
 dev_dependencies:
   flutter_test:

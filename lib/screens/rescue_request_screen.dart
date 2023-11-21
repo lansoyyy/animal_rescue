@@ -17,6 +17,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../utils/colors.dart';
 
 class RescueRequestScreen extends StatefulWidget {
@@ -39,6 +40,8 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
   late File imageFile;
 
   late String imageURL = '';
+
+  String selected = 'Jay';
 
   Future<void> uploadPicture(String inputSource) async {
     final picker = ImagePicker();
@@ -118,8 +121,19 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 75,
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          onPressed: () async {
+                            final Uri url = Uri.parse('https://youtube.com');
+                            if (!await launchUrl(url)) {
+                              throw Exception('Could not launch $url');
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.info_outline_rounded,
+                          ),
+                        ),
                       ),
                       TextWidget(
                         text: 'Request a Rescue',
@@ -244,7 +258,114 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30, bottom: 10),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Send Request to:',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'Bold',
+                                    color: primary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selected = 'Jay';
+                              });
+                              showToast('Selected: $selected');
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                    minRadius: 35,
+                                    maxRadius: 35,
+                                    child:
+                                        Image.asset('assets/images/jay.png')),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                TextWidget(
+                                  text: 'Jay',
+                                  fontSize: 14,
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selected = 'Leonil';
+                              });
+                              showToast('Selected: $selected');
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                    minRadius: 35,
+                                    maxRadius: 35,
+                                    child:
+                                        Image.asset('assets/images/loy.png')),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                TextWidget(
+                                  text: 'Leonil',
+                                  fontSize: 14,
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selected = 'Sarfeil';
+                              });
+                              showToast('Selected: $selected');
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                    minRadius: 35,
+                                    maxRadius: 35,
+                                    child:
+                                        Image.asset('assets/images/sar.png')),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                TextWidget(
+                                  text: 'Sarfeil',
+                                  fontSize: 14,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
@@ -274,7 +395,7 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
                                       label: 'Send Request',
                                       onPressed: () {
                                         addRequest(msgController.text, imageURL,
-                                            lat, long, data['name']);
+                                            lat, long, data['name'], selected);
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>

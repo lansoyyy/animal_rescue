@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-Future addRequest(msg, img, double lat, double long, name) async {
+Future addRequest(msg, img, double lat, double long, name, selected) async {
   final docUser = FirebaseFirestore.instance.collection('Request').doc();
 
   final json = {
@@ -15,6 +15,7 @@ Future addRequest(msg, img, double lat, double long, name) async {
     'id': docUser.id,
     'status': 'Pending',
     'uid': FirebaseAuth.instance.currentUser!.uid,
+    'selected': selected,
   };
 
   await docUser.set(json);

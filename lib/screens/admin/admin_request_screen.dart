@@ -1,15 +1,14 @@
 import 'package:animal_rescue/screens/admin/admin_rescue_screen.dart';
-import 'package:animal_rescue/screens/request_history_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
-import 'package:animal_rescue/widgets/button_widget.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
-import 'package:animal_rescue/widgets/textfield_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AdminRequestScreen extends StatefulWidget {
-  const AdminRequestScreen({super.key});
+  String selected;
+
+  AdminRequestScreen({super.key, required this.selected});
 
   @override
   State<AdminRequestScreen> createState() => _AdminRequestScreenState();
@@ -23,8 +22,10 @@ class _AdminRequestScreenState extends State<AdminRequestScreen> {
       body: Container(
         color: Colors.white,
         child: StreamBuilder<QuerySnapshot>(
-            stream:
-                FirebaseFirestore.instance.collection('Request').snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection('Request')
+                .where('selected', isEqualTo: widget.selected)
+                .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -105,7 +106,8 @@ class _AdminRequestScreenState extends State<AdminRequestScreen> {
                                     fontFamily: 'Medium',
                                   ),
                                   TextWidget(
-                                    text: 'Rescuer: ${data.docs[i]['name']}',
+                                    text:
+                                        'Rescuer: ${data.docs[i]['selected']}',
                                     fontSize: 14,
                                     color: Colors.black,
                                     fontFamily: 'Medium',

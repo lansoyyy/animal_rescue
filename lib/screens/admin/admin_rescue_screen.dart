@@ -1,11 +1,8 @@
 import 'dart:async';
 
-import 'package:animal_rescue/screens/admin/admin_request_screen.dart';
-import 'package:animal_rescue/screens/request_history_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/button_widget.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
-import 'package:animal_rescue/widgets/textfield_widget.dart';
 import 'package:animal_rescue/widgets/toast_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -180,10 +177,7 @@ class _AdminRescueScreenState extends State<AdminRescueScreen> {
                                             .doc(widget.id)
                                             .update({'status': 'Ongoing'});
                                         showToast('Marked as ongoing!');
-                                        Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const AdminRequestScreen()));
+                                        Navigator.of(context).pop();
                                       },
                                     ),
                                   ),
@@ -200,10 +194,7 @@ class _AdminRescueScreenState extends State<AdminRescueScreen> {
                                             .doc(widget.id)
                                             .update({'status': 'Rescued'});
                                         showToast('Marked as rescued!');
-                                        Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const AdminRequestScreen()));
+                                        Navigator.of(context).pop();
                                       },
                                     ),
                                   ),

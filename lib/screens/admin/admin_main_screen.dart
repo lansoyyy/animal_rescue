@@ -1,13 +1,9 @@
-import 'package:animal_rescue/screens/admin/admin_request_screen.dart';
-import 'package:animal_rescue/screens/auth/signup_screen.dart';
-import 'package:animal_rescue/screens/home_screen.dart';
+import 'package:animal_rescue/screens/admin/admin_password_screen.dart';
 import 'package:animal_rescue/utils/colors.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../widgets/button_widget.dart';
 import '../../widgets/text_widget.dart';
-import '../../widgets/textfield_widget.dart';
 
 class AdminMainScreen extends StatelessWidget {
   const AdminMainScreen({super.key});
@@ -35,7 +31,11 @@ class AdminMainScreen extends StatelessWidget {
             ListTile(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const AdminRequestScreen()));
+                    builder: (context) => AdminPasswordScreen(
+                          name: 'Jay Lorence Pati-on',
+                          img: 'assets/images/jay.png',
+                          user: 'Jay',
+                        )));
               },
               leading: CircleAvatar(
                   minRadius: 50,
@@ -54,7 +54,11 @@ class AdminMainScreen extends StatelessWidget {
             ListTile(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const AdminRequestScreen()));
+                    builder: (context) => AdminPasswordScreen(
+                          name: 'Leonil Lugod',
+                          img: 'assets/images/loy.png',
+                          user: 'Leonil',
+                        )));
               },
               leading: CircleAvatar(
                   minRadius: 50,
@@ -73,7 +77,11 @@ class AdminMainScreen extends StatelessWidget {
             ListTile(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const AdminRequestScreen()));
+                    builder: (context) => AdminPasswordScreen(
+                          name: 'Sarfeil Dave Curran',
+                          img: 'assets/images/sar.png',
+                          user: 'Sarfeil',
+                        )));
               },
               leading: CircleAvatar(
                   minRadius: 50,

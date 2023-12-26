@@ -50,6 +50,7 @@ class LoginScreen extends StatelessWidget {
               height: 20,
             ),
             ButtonWidget(
+              color: primary,
               label: 'Login',
               onPressed: () {
                 // login(context);

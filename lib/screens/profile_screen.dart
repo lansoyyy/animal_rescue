@@ -97,6 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 30,
                     ),
                     ButtonWidget(
+                      color: primary,
                       label: 'Edit Profile',
                       onPressed: () async {
                         await FirebaseFirestore.instance.doc(data.id).update({

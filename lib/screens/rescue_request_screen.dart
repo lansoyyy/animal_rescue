@@ -393,6 +393,7 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
                                   dynamic data = snapshot.data;
                                   return Center(
                                     child: ButtonWidget(
+                                      color: primary,
                                       label: 'Send Request',
                                       onPressed: () {
                                         addRequest(msgController.text, imageURL,

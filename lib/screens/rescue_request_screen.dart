@@ -41,7 +41,7 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
 
   late String imageURL = '';
 
-  String selected = 'Jay';
+  String selected = '';
 
   Future<void> uploadPicture(String inputSource) async {
     final picker = ImagePicker();
@@ -282,89 +282,89 @@ class _RescueRequestScreenState extends State<RescueRequestScreen> {
                           ),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selected = 'Jay';
-                              });
-                              showToast('Selected: $selected');
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                    minRadius: 35,
-                                    maxRadius: 35,
-                                    child:
-                                        Image.asset('assets/images/jay.png')),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                TextWidget(
-                                  text: 'Jay',
-                                  fontSize: 14,
-                                ),
-                              ],
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selected = 'Leonil';
-                              });
-                              showToast('Selected: $selected');
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                    minRadius: 35,
-                                    maxRadius: 35,
-                                    child:
-                                        Image.asset('assets/images/loy.png')),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                TextWidget(
-                                  text: 'Leonil',
-                                  fontSize: 14,
-                                ),
-                              ],
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selected = 'Sarfeil';
-                              });
-                              showToast('Selected: $selected');
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                    minRadius: 35,
-                                    maxRadius: 35,
-                                    child:
-                                        Image.asset('assets/images/sar.png')),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                TextWidget(
-                                  text: 'Sarfeil',
-                                  fontSize: 14,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //   children: [
+                      //     GestureDetector(
+                      //       onTap: () {
+                      //         setState(() {
+                      //           selected = 'Jay';
+                      //         });
+                      //         showToast('Selected: $selected');
+                      //       },
+                      //       child: Column(
+                      //         mainAxisAlignment: MainAxisAlignment.center,
+                      //         crossAxisAlignment: CrossAxisAlignment.center,
+                      //         children: [
+                      //           CircleAvatar(
+                      //               minRadius: 35,
+                      //               maxRadius: 35,
+                      //               child:
+                      //                   Image.asset('assets/images/jay.png')),
+                      //           const SizedBox(
+                      //             height: 5,
+                      //           ),
+                      //           TextWidget(
+                      //             text: 'Jay',
+                      //             fontSize: 14,
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //     GestureDetector(
+                      //       onTap: () {
+                      //         setState(() {
+                      //           selected = 'Leonil';
+                      //         });
+                      //         showToast('Selected: $selected');
+                      //       },
+                      //       child: Column(
+                      //         mainAxisAlignment: MainAxisAlignment.center,
+                      //         crossAxisAlignment: CrossAxisAlignment.center,
+                      //         children: [
+                      //           CircleAvatar(
+                      //               minRadius: 35,
+                      //               maxRadius: 35,
+                      //               child:
+                      //                   Image.asset('assets/images/loy.png')),
+                      //           const SizedBox(
+                      //             height: 5,
+                      //           ),
+                      //           TextWidget(
+                      //             text: 'Leonil',
+                      //             fontSize: 14,
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //     GestureDetector(
+                      //       onTap: () {
+                      //         setState(() {
+                      //           selected = 'Sarfeil';
+                      //         });
+                      //         showToast('Selected: $selected');
+                      //       },
+                      //       child: Column(
+                      //         mainAxisAlignment: MainAxisAlignment.center,
+                      //         crossAxisAlignment: CrossAxisAlignment.center,
+                      //         children: [
+                      //           CircleAvatar(
+                      //               minRadius: 35,
+                      //               maxRadius: 35,
+                      //               child:
+                      //                   Image.asset('assets/images/sar.png')),
+                      //           const SizedBox(
+                      //             height: 5,
+                      //           ),
+                      //           TextWidget(
+                      //             text: 'Sarfeil',
+                      //             fontSize: 14,
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                       const SizedBox(
                         height: 10,
                       ),

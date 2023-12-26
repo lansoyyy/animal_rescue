@@ -1,5 +1,6 @@
 import 'package:animal_rescue/screens/home_tab.dart';
 import 'package:animal_rescue/services/add_announcements.dart';
+import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/toast_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -73,6 +74,7 @@ class SignupScreen extends StatelessWidget {
                 height: 20,
               ),
               ButtonWidget(
+                color: primary,
                 label: 'Signup',
                 onPressed: () {
                   register(context);

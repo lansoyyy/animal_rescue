@@ -1,5 +1,6 @@
 import 'package:animal_rescue/screens/home_screen.dart';
 import 'package:animal_rescue/screens/profile_screen.dart';
+import 'package:animal_rescue/screens/request_history_screen.dart';
 import 'package:animal_rescue/screens/rescue_request_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     final tabs = [
       const HomeScreen(),
+      const RequestHistoryScreen(),
       const RescueRequestScreen(),
       const ProfileScreen(),
     ];
@@ -43,6 +45,8 @@ class _HomeTabState extends State<HomeTab> {
             unselectedItemColor: Colors.black,
             items: const [
               BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
+              BottomNavigationBarItem(
+                  label: 'History', icon: Icon(Icons.history)),
               BottomNavigationBarItem(
                   label: 'Report', icon: Icon(Icons.add_circle_outlined)),
               BottomNavigationBarItem(

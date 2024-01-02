@@ -1,5 +1,6 @@
 import 'package:animal_rescue/screens/home_tab.dart';
-import 'package:animal_rescue/services/add_announcements.dart';
+
+import 'package:animal_rescue/services/add_user.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/toast_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/button_widget.dart';
 import '../../widgets/text_widget.dart';
 import '../../widgets/textfield_widget.dart';
+import '../admin/rescuer_list_screen.dart';
 
 class SignupScreen extends StatelessWidget {
   final emailController = TextEditingController();
@@ -17,8 +19,9 @@ class SignupScreen extends StatelessWidget {
   final addressController = TextEditingController();
 
   bool inrescuer;
+  bool? inadmin;
 
-  SignupScreen({super.key, required this.inrescuer});
+  SignupScreen({super.key, required this.inrescuer, this.inadmin = false});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class SignupScreen extends StatelessWidget {
                 height: 50,
               ),
               TextWidget(
-                text: 'Register here',
+                text: inadmin! ? 'Register a Rescuer' : 'Register here',
                 fontSize: 24,
                 fontFamily: 'Bold',
               ),
@@ -97,15 +100,27 @@ class SignupScreen extends StatelessWidget {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
 
-      // add
-
-      addUser(nameController.text, contactnumberController.text,
-          addressController.text, emailController.text);
+      addUser(
+          nameController.text,
+          contactnumberController.text,
+          addressController.text,
+          emailController.text,
+          inrescuer ? 'Rescuer' : 'User');
 
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
 
       showToast('Account created succesfully!');
+
+      if (inadmin!) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => const AdminRescuerScreen()));
+      } else {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => HomeTab(
+                  inrescuer: inrescuer,
+                )));
+      }
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => HomeTab(
                 inrescuer: inrescuer,

@@ -1,4 +1,3 @@
-import 'package:animal_rescue/screens/admin/admin_main_screen.dart';
 import 'package:animal_rescue/screens/auth/rescuer_login.dart';
 import 'package:animal_rescue/screens/auth/signup_screen.dart';
 import 'package:animal_rescue/screens/home_tab.dart';
@@ -11,6 +10,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/button_widget.dart';
 import '../../widgets/text_widget.dart';
 import '../../widgets/textfield_widget.dart';
+import '../admin/admin_password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final emailController = TextEditingController();
@@ -102,7 +102,11 @@ class LoginScreen extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const AdminMainScreen()));
+                    builder: (context) => AdminPasswordScreen(
+                          name: 'Sarfeil Dave Curran',
+                          img: 'assets/images/sar.png',
+                          user: 'Sarfeil',
+                        )));
               },
               child: TextWidget(
                 decoration: TextDecoration.underline,

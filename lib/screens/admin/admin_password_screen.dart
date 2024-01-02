@@ -1,4 +1,6 @@
-import 'package:animal_rescue/screens/admin/admin_request_screen.dart';
+import 'package:animal_rescue/screens/admin/admin_rescue_screen.dart';
+import 'package:animal_rescue/screens/admin/rescuer_list_screen.dart';
+import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
 import 'package:animal_rescue/widgets/toast_widget.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,14 @@ class _AdminPasswordScreenState extends State<AdminPasswordScreen> {
         child: Column(
           children: [
             const SizedBox(
-              height: 100,
+              height: 50,
+            ),
+            Center(
+              child: Image.asset(
+                'assets/images/Logo.png',
+                width: 325,
+                height: 150,
+              ),
             ),
             Center(
               child: Image.asset(
@@ -41,9 +50,10 @@ class _AdminPasswordScreenState extends State<AdminPasswordScreen> {
               height: 20,
             ),
             TextWidget(
-              text: widget.name,
+              text: 'ADMINISTRATOR',
               fontSize: 24,
               fontFamily: 'Bold',
+              color: primary,
             ),
             const SizedBox(
               height: 50,
@@ -57,13 +67,14 @@ class _AdminPasswordScreenState extends State<AdminPasswordScreen> {
               height: 30,
             ),
             ButtonWidget(
+              color: primary,
               label: 'Login',
               onPressed: () {
-                if (passwordController.text != '${widget.user}123') {
+                if (passwordController.text != 'adminpassword') {
                   showToast('Incorrect password!');
                 } else {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const AdminRequestScreen()));
+                      builder: (context) => const AdminRescuerScreen()));
                 }
                 // login(context);
               },

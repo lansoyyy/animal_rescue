@@ -2,9 +2,8 @@ import 'package:animal_rescue/screens/home_screen.dart';
 import 'package:animal_rescue/screens/profile_screen.dart';
 import 'package:animal_rescue/screens/request_history_screen.dart';
 import 'package:animal_rescue/screens/rescue_request_screen.dart';
+import 'package:animal_rescue/utils/colors.dart';
 import 'package:flutter/material.dart';
-
-import '../utils/colors.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -30,19 +29,19 @@ class _HomeTabState extends State<HomeTab> {
     return Scaffold(
         bottomNavigationBar: Material(
           elevation: 0,
-          color: Colors.transparent,
+          color: Colors.black,
           child: BottomNavigationBar(
             currentIndex: _index,
-            backgroundColor: primary,
             selectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: 'QBold',
-                color: Colors.white),
+                color: Colors.black),
             unselectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.normal,
                 fontFamily: 'QRegular',
-                color: Colors.grey),
-            unselectedItemColor: Colors.black,
+                color: Colors.black),
+            unselectedItemColor: Colors.grey,
+            selectedItemColor: primary,
             items: const [
               BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
               BottomNavigationBarItem(

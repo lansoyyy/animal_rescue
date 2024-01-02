@@ -16,7 +16,9 @@ class SignupScreen extends StatelessWidget {
   final contactnumberController = TextEditingController();
   final addressController = TextEditingController();
 
-  SignupScreen({super.key});
+  bool inrescuer;
+
+  SignupScreen({super.key, required this.inrescuer});
 
   @override
   Widget build(BuildContext context) {
@@ -104,8 +106,10 @@ class SignupScreen extends StatelessWidget {
           email: emailController.text, password: passwordController.text);
 
       showToast('Account created succesfully!');
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeTab()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => HomeTab(
+                inrescuer: inrescuer,
+              )));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showToast('The password provided is too weak.');

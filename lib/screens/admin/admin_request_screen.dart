@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AdminRequestScreen extends StatefulWidget {
-  String selected;
-
-  AdminRequestScreen({super.key, required this.selected});
+  const AdminRequestScreen({super.key});
 
   @override
   State<AdminRequestScreen> createState() => _AdminRequestScreenState();
@@ -22,10 +20,8 @@ class _AdminRequestScreenState extends State<AdminRequestScreen> {
       body: Container(
         color: Colors.white,
         child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection('Request')
-                .where('selected', isEqualTo: widget.selected)
-                .snapshots(),
+            stream:
+                FirebaseFirestore.instance.collection('Request').snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -101,13 +97,6 @@ class _AdminRequestScreenState extends State<AdminRequestScreen> {
                                   TextWidget(
                                     text: DateFormat.yMMMd().add_jm().format(
                                         data.docs[i]['dateTime'].toDate()),
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                    fontFamily: 'Medium',
-                                  ),
-                                  TextWidget(
-                                    text:
-                                        'Rescuer: ${data.docs[i]['selected']}',
                                     fontSize: 14,
                                     color: Colors.black,
                                     fontFamily: 'Medium',

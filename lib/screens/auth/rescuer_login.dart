@@ -1,5 +1,5 @@
 import 'package:animal_rescue/screens/admin/admin_main_screen.dart';
-import 'package:animal_rescue/screens/auth/rescuer_login.dart';
+import 'package:animal_rescue/screens/auth/login_screen.dart';
 import 'package:animal_rescue/screens/auth/signup_screen.dart';
 import 'package:animal_rescue/screens/home_tab.dart';
 import 'package:animal_rescue/utils/colors.dart';
@@ -12,11 +12,11 @@ import '../../widgets/button_widget.dart';
 import '../../widgets/text_widget.dart';
 import '../../widgets/textfield_widget.dart';
 
-class LoginScreen extends StatelessWidget {
+class RescuerLoginScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  LoginScreen({super.key});
+  RescuerLoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => SignupScreen(
-                              inrescuer: false,
+                              inrescuer: true,
                             )));
                   },
                   child: TextWidget(
@@ -88,13 +88,13 @@ class LoginScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => RescuerLoginScreen()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               },
               child: TextWidget(
                 decoration: TextDecoration.underline,
                 fontFamily: 'Bold',
-                text: 'Login as Rescuer',
+                text: 'Login as User',
                 fontSize: 14,
                 color: primary,
               ),
@@ -125,7 +125,7 @@ class LoginScreen extends StatelessWidget {
       showToast('Logged in succesfully!');
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => HomeTab(
-                inrescuer: false,
+                inrescuer: true,
               )));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

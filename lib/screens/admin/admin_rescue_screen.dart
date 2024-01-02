@@ -53,6 +53,8 @@ class _AdminRescueScreenState extends State<AdminRescueScreen> {
               return const SizedBox();
             }
             dynamic data = snapshot.data;
+
+            addMarker(data['lat'], data['long']);
             return Container(
               color: Colors.white,
               child: SingleChildScrollView(
@@ -165,7 +167,7 @@ class _AdminRescueScreenState extends State<AdminRescueScreen> {
                             const SizedBox(
                               height: 20,
                             ),
-                            data['status'] == 'Onging'
+                            data['status'] == 'Ongoing'
                                 ? const SizedBox()
                                 : Center(
                                     child: ButtonWidget(
@@ -174,6 +176,7 @@ class _AdminRescueScreenState extends State<AdminRescueScreen> {
                                       label: 'Mark as Ongoing',
                                       onPressed: () async {
                                         await FirebaseFirestore.instance
+                                            .collection('Request')
                                             .doc(widget.id)
                                             .update({'status': 'Ongoing'});
                                         showToast('Marked as ongoing!');
@@ -191,6 +194,7 @@ class _AdminRescueScreenState extends State<AdminRescueScreen> {
                                       label: 'Mark as Rescued',
                                       onPressed: () async {
                                         await FirebaseFirestore.instance
+                                            .collection('Request')
                                             .doc(widget.id)
                                             .update({'status': 'Rescued'});
                                         showToast('Marked as rescued!');

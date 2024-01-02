@@ -1,3 +1,4 @@
+import 'package:animal_rescue/screens/admin/admin_request_screen.dart';
 import 'package:animal_rescue/screens/home_screen.dart';
 import 'package:animal_rescue/screens/profile_screen.dart';
 import 'package:animal_rescue/screens/request_history_screen.dart';
@@ -6,7 +7,12 @@ import 'package:animal_rescue/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeTab extends StatefulWidget {
-  const HomeTab({super.key});
+  bool inrescuer;
+
+  HomeTab({
+    super.key,
+    required this.inrescuer,
+  });
 
   @override
   State<HomeTab> createState() => _HomeTabState();
@@ -26,6 +32,12 @@ class _HomeTabState extends State<HomeTab> {
       const ProfileScreen(),
     ];
 
+    final tabs1 = [
+      const HomeScreen(),
+      const AdminRequestScreen(),
+      const ProfileScreen(),
+    ];
+
     return Scaffold(
         bottomNavigationBar: Material(
           elevation: 0,
@@ -42,15 +54,25 @@ class _HomeTabState extends State<HomeTab> {
                 color: Colors.black),
             unselectedItemColor: Colors.grey,
             selectedItemColor: primary,
-            items: const [
-              BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
-              BottomNavigationBarItem(
-                  label: 'History', icon: Icon(Icons.history)),
-              BottomNavigationBarItem(
-                  label: 'Report', icon: Icon(Icons.add_circle_outlined)),
-              BottomNavigationBarItem(
-                  label: 'Profile', icon: Icon(Icons.person)),
-            ],
+            items: widget.inrescuer
+                ? [
+                    const BottomNavigationBarItem(
+                        label: 'Home', icon: Icon(Icons.home)),
+                    const BottomNavigationBarItem(
+                        label: 'History', icon: Icon(Icons.history)),
+                    const BottomNavigationBarItem(
+                        label: 'Profile', icon: Icon(Icons.person)),
+                  ]
+                : [
+                    const BottomNavigationBarItem(
+                        label: 'Home', icon: Icon(Icons.home)),
+                    const BottomNavigationBarItem(
+                        label: 'History', icon: Icon(Icons.history)),
+                    const BottomNavigationBarItem(
+                        label: 'Report', icon: Icon(Icons.add_circle_outlined)),
+                    const BottomNavigationBarItem(
+                        label: 'Profile', icon: Icon(Icons.person)),
+                  ],
             onTap: (value) {
               setState(() {
                 _index = value;
@@ -63,7 +85,8 @@ class _HomeTabState extends State<HomeTab> {
             image: DecorationImage(
                 image: AssetImage('assets/images/Gray.png'), fit: BoxFit.cover),
           ),
-          child: SafeArea(child: tabs[_index]),
+          child:
+              SafeArea(child: widget.inrescuer ? tabs1[_index] : tabs[_index]),
         ));
   }
 }

@@ -63,9 +63,7 @@ class _AdminPasswordScreenState extends State<AdminPasswordScreen> {
                   showToast('Incorrect password!');
                 } else {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => AdminRequestScreen(
-                            selected: widget.user,
-                          )));
+                      builder: (context) => const AdminRequestScreen()));
                 }
                 // login(context);
               },

@@ -13,6 +13,7 @@ Future addUser(name, number, address, email, type) async {
     'email': email,
     'dateTime': DateTime.now(),
     'type': type,
+    'profilePicture': 'https://cdn-icons-png.flaticon.com/256/149/149071.png',
     'id': docUser.id,
   };
 

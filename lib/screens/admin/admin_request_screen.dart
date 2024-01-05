@@ -20,8 +20,10 @@ class _AdminRequestScreenState extends State<AdminRequestScreen> {
       body: Container(
         color: Colors.white,
         child: StreamBuilder<QuerySnapshot>(
-            stream:
-                FirebaseFirestore.instance.collection('Request').snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection('Request')
+                .orderBy('dateTime', descending: true)
+                .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -104,9 +106,12 @@ class _AdminRequestScreenState extends State<AdminRequestScreen> {
                                 ],
                               ),
                               trailing: TextWidget(
-                                text: '${data.docs[i]['status']}',
+                                text: data.docs[i]['status'],
                                 fontSize: 14,
-                                color: primary,
+                                color: data.docs[i]['status'] == 'Ongoing' ||
+                                        data.docs[i]['status'] == 'Pending'
+                                    ? Colors.black
+                                    : Colors.amber[700],
                                 fontFamily: 'Bold',
                               ),
                             ),

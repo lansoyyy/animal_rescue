@@ -27,8 +27,9 @@ class _RequestHistoryScreenState extends State<RequestHistoryScreen> {
           child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('Request')
-                  .where('uid',
-                      isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                  // .where('uid',
+                  //     isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                  // .orderBy('dateTime', descending: true)
                   .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -111,9 +112,12 @@ class _RequestHistoryScreenState extends State<RequestHistoryScreen> {
                                 ],
                               ),
                               trailing: TextWidget(
-                                text: '${data.docs[i]['status']}',
+                                text: data.docs[i]['status'],
                                 fontSize: 14,
-                                color: primary,
+                                color: data.docs[i]['status'] == 'Ongoing' ||
+                                        data.docs[i]['status'] == 'Pending'
+                                    ? Colors.black
+                                    : Colors.amber[700],
                                 fontFamily: 'Bold',
                               ),
                             ),

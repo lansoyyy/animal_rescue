@@ -14,9 +14,17 @@ import '../admin/rescuer_list_screen.dart';
 class SignupScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final nameController = TextEditingController();
+  final fnameController = TextEditingController();
+  final lnameController = TextEditingController();
+  final mnameController = TextEditingController();
   final contactnumberController = TextEditingController();
-  final addressController = TextEditingController();
+  final purokController = TextEditingController();
+  final brgyController = TextEditingController();
+  final cityController = TextEditingController();
+  final provinceController = TextEditingController();
+  final monthController = TextEditingController();
+  final dayController = TextEditingController();
+  final yearController = TextEditingController();
 
   bool inrescuer;
   bool? inadmin;
@@ -27,69 +35,197 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              TextWidget(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 50,
+            ),
+            Center(
+              child: TextWidget(
                 text: inadmin! ? 'Register a Rescuer' : 'Register here',
                 fontSize: 24,
                 fontFamily: 'Bold',
               ),
-              const SizedBox(
-                height: 20,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextWidget(
+                      text: 'Name',
+                      decoration: TextDecoration.underline,
+                      fontSize: 14,
+                      fontFamily: 'Regular',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextFieldWidget(
+                        width: 150,
+                        label: 'First Name',
+                        controller: fnameController,
+                      ),
+                      TextFieldWidget(
+                        width: 50,
+                        label: 'M.I',
+                        controller: mnameController,
+                      ),
+                      TextFieldWidget(
+                        width: 150,
+                        label: 'Last Name',
+                        controller: lnameController,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextWidget(
+                      text: 'Address',
+                      decoration: TextDecoration.underline,
+                      fontSize: 14,
+                      fontFamily: 'Regular',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextFieldWidget(
+                        width: 175,
+                        label: 'Purok/Street/Zone',
+                        controller: purokController,
+                      ),
+                      TextFieldWidget(
+                        width: 175,
+                        label: 'Barangay',
+                        controller: brgyController,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextFieldWidget(
+                        width: 175,
+                        label: 'Municiplaity/City',
+                        controller: cityController,
+                      ),
+                      TextFieldWidget(
+                        width: 175,
+                        label: 'Province',
+                        controller: provinceController,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextWidget(
+                      text: 'Birthdate',
+                      decoration: TextDecoration.underline,
+                      fontSize: 14,
+                      fontFamily: 'Regular',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextFieldWidget(
+                        width: 150,
+                        label: 'Month',
+                        controller: monthController,
+                      ),
+                      TextFieldWidget(
+                        inputType: TextInputType.number,
+                        width: 50,
+                        label: 'Day',
+                        controller: dayController,
+                      ),
+                      TextFieldWidget(
+                        inputType: TextInputType.number,
+                        width: 150,
+                        label: 'Year',
+                        controller: yearController,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextWidget(
+                      text: 'Login details',
+                      decoration: TextDecoration.underline,
+                      fontSize: 14,
+                      fontFamily: 'Regular',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: TextFieldWidget(
+                      label: 'Email',
+                      controller: emailController,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: TextFieldWidget(
+                      isObscure: true,
+                      label: 'Password',
+                      controller: passwordController,
+                    ),
+                  ),
+                ],
               ),
-              TextFieldWidget(
-                label: 'Name',
-                controller: nameController,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFieldWidget(
-                label: 'Contact Number',
-                controller: contactnumberController,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFieldWidget(
-                label: 'Address',
-                controller: addressController,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFieldWidget(
-                label: 'Email',
-                controller: emailController,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFieldWidget(
-                isObscure: true,
-                label: 'Password',
-                controller: passwordController,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ButtonWidget(
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: ButtonWidget(
                 color: primary,
                 label: 'Signup',
                 onPressed: () {
                   register(context);
                 },
               ),
-              const SizedBox(
-                height: 20,
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
         ),
       ),
     );
@@ -101,11 +237,12 @@ class SignupScreen extends StatelessWidget {
           email: emailController.text, password: passwordController.text);
 
       addUser(
-          nameController.text,
+          '${fnameController.text} ${mnameController.text}. ${lnameController.text}',
           contactnumberController.text,
-          addressController.text,
+          '${purokController.text}, ${brgyController.text}, ${cityController.text}, ${provinceController.text}',
           emailController.text,
-          inrescuer ? 'Rescuer' : 'User');
+          inrescuer ? 'Rescuer' : 'User',
+          '${monthController.text}, ${dayController.text}, ${yearController.text}');
 
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);

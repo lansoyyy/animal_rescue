@@ -1,4 +1,5 @@
 import 'package:animal_rescue/screens/admin/admin_main_screen.dart';
+import 'package:animal_rescue/screens/admin/admin_password_screen.dart';
 import 'package:animal_rescue/screens/auth/login_screen.dart';
 import 'package:animal_rescue/screens/auth/signup_screen.dart';
 import 'package:animal_rescue/screens/home_tab.dart';
@@ -102,7 +103,11 @@ class RescuerLoginScreen extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const AdminMainScreen()));
+                    builder: (context) => AdminPasswordScreen(
+                          name: 'Sarfeil Dave Curran',
+                          img: 'assets/images/sar.png',
+                          user: 'Sarfeil',
+                        )));
               },
               child: TextWidget(
                 decoration: TextDecoration.underline,

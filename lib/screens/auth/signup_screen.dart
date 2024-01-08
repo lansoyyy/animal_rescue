@@ -73,17 +73,17 @@ class SignupScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       TextFieldWidget(
-                        width: 150,
+                        width: 125,
                         label: 'First Name',
                         controller: fnameController,
                       ),
                       TextFieldWidget(
-                        width: 50,
+                        width: 80,
                         label: 'M.I',
                         controller: mnameController,
                       ),
                       TextFieldWidget(
-                        width: 150,
+                        width: 125,
                         label: 'Last Name',
                         controller: lnameController,
                       ),
@@ -156,19 +156,19 @@ class SignupScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       TextFieldWidget(
-                        width: 150,
+                        width: 125,
                         label: 'Month',
                         controller: monthController,
                       ),
                       TextFieldWidget(
                         inputType: TextInputType.number,
-                        width: 50,
+                        width: 85,
                         label: 'Day',
                         controller: dayController,
                       ),
                       TextFieldWidget(
                         inputType: TextInputType.number,
-                        width: 150,
+                        width: 125,
                         label: 'Year',
                         controller: yearController,
                       ),

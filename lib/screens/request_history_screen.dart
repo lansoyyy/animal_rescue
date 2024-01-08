@@ -27,9 +27,9 @@ class _RequestHistoryScreenState extends State<RequestHistoryScreen> {
           child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('Request')
-                  // .where('uid',
-                  //     isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-                  // .orderBy('dateTime', descending: true)
+                  .where('uid',
+                      isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                  .orderBy('dateTime', descending: true)
                   .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {

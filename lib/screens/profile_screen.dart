@@ -20,11 +20,21 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final usernameController = TextEditingController();
-  final emailController = TextEditingController();
+  final fnameController = TextEditingController();
+  final lnameController = TextEditingController();
+  final mnameController = TextEditingController();
   final contactnumberController = TextEditingController();
-  final passwordController = TextEditingController();
-  final addressController = TextEditingController();
+  final purokController = TextEditingController();
+  final brgyController = TextEditingController();
+  final cityController = TextEditingController();
+  final provinceController = TextEditingController();
+  final monthController = TextEditingController();
+  final dayController = TextEditingController();
+  final yearController = TextEditingController();
+
+  final name = TextEditingController();
+  final address = TextEditingController();
+  final bday = TextEditingController();
 
   late String fileName = '';
 
@@ -114,12 +124,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
             } else if (snapshot.connectionState == ConnectionState.waiting) {
               return const SizedBox();
             }
+
             dynamic data = snapshot.data;
 
-            usernameController.text = data['name'];
-            addressController.text = data['address'];
-            contactnumberController.text = data['number'];
+            name.text = data['name'];
+            address.text = data['address'];
+            bday.text = data['bday'];
 
+            fnameController.text = name.text.split(' ')[0];
+            mnameController.text = name.text.split(' ')[1];
+            lnameController.text = name.text.split(' ')[2];
+
+            purokController.text = address.text.split(',')[0];
+            brgyController.text = address.text.split(',')[1];
+            cityController.text = address.text.split(',')[2];
+            provinceController.text = address.text.split(',')[3];
+
+            monthController.text = bday.text.split(',')[0];
+            dayController.text = bday.text.split(',')[1];
+            yearController.text = bday.text.split(',')[2];
             return SizedBox(
               height: double.infinity,
               width: double.infinity,
@@ -154,24 +177,131 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: primary,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: TextWidget(
+                              text: 'Name',
+                              decoration: TextDecoration.underline,
+                              fontSize: 14,
+                              fontFamily: 'Regular',
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              TextFieldWidget(
+                                width: 125,
+                                label: 'First Name',
+                                controller: fnameController,
+                              ),
+                              TextFieldWidget(
+                                width: 80,
+                                label: 'M.I',
+                                controller: mnameController,
+                              ),
+                              TextFieldWidget(
+                                width: 125,
+                                label: 'Last Name',
+                                controller: lnameController,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: TextWidget(
+                              text: 'Address',
+                              decoration: TextDecoration.underline,
+                              fontSize: 14,
+                              fontFamily: 'Regular',
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              TextFieldWidget(
+                                width: 175,
+                                label: 'Purok/Street/Zone',
+                                controller: purokController,
+                              ),
+                              TextFieldWidget(
+                                width: 175,
+                                label: 'Barangay',
+                                controller: brgyController,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              TextFieldWidget(
+                                width: 175,
+                                label: 'Municiplaity/City',
+                                controller: cityController,
+                              ),
+                              TextFieldWidget(
+                                width: 175,
+                                label: 'Province',
+                                controller: provinceController,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: TextWidget(
+                              text: 'Birthdate',
+                              decoration: TextDecoration.underline,
+                              fontSize: 14,
+                              fontFamily: 'Regular',
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              TextFieldWidget(
+                                width: 125,
+                                label: 'Month',
+                                controller: monthController,
+                              ),
+                              TextFieldWidget(
+                                inputType: TextInputType.number,
+                                width: 85,
+                                label: 'Day',
+                                controller: dayController,
+                              ),
+                              TextFieldWidget(
+                                inputType: TextInputType.number,
+                                width: 125,
+                                label: 'Year',
+                                controller: yearController,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    TextFieldWidget(
-                        label: 'Name', controller: usernameController),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFieldWidget(
-                      label: 'Address',
-                      controller: addressController,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFieldWidget(
-                        label: 'Phone Number',
-                        controller: contactnumberController),
                     const SizedBox(
                       height: 30,
                     ),
@@ -179,10 +309,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: primary,
                       label: 'Edit Profile',
                       onPressed: () async {
-                        await FirebaseFirestore.instance.doc(data.id).update({
-                          'name': usernameController.text,
-                          'address': addressController.text,
-                          'number': contactnumberController.text
+                        await FirebaseFirestore.instance
+                            .collection('Users')
+                            .doc(data.id)
+                            .update({
+                          'name':
+                              '${fnameController.text} ${mnameController.text}. ${lnameController.text}',
+                          'address':
+                              '${purokController.text}, ${brgyController.text}, ${cityController.text}, ${provinceController.text}',
+                          'bday':
+                              '${monthController.text}, ${dayController.text}, ${yearController.text}'
                         });
                         showToast('Profile updated succesfully!');
                       },

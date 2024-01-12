@@ -1,35 +1,49 @@
-import 'package:animal_rescue/screens/home_tab.dart';
+import 'package:animal_rescue/screens/auth/login_screen.dart';
 
 import 'package:animal_rescue/services/add_user.dart';
 import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/toast_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../widgets/button_widget.dart';
 import '../../widgets/text_widget.dart';
 import '../../widgets/textfield_widget.dart';
 import '../admin/rescuer_list_screen.dart';
 
-class SignupScreen extends StatelessWidget {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final fnameController = TextEditingController();
-  final lnameController = TextEditingController();
-  final mnameController = TextEditingController();
-  final contactnumberController = TextEditingController();
-  final purokController = TextEditingController();
-  final brgyController = TextEditingController();
-  final cityController = TextEditingController();
-  final provinceController = TextEditingController();
-  final monthController = TextEditingController();
-  final dayController = TextEditingController();
-  final yearController = TextEditingController();
-
+class SignupScreen extends StatefulWidget {
   bool inrescuer;
   bool? inadmin;
 
   SignupScreen({super.key, required this.inrescuer, this.inadmin = false});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  final fnameController = TextEditingController();
+
+  final lnameController = TextEditingController();
+
+  final mnameController = TextEditingController();
+
+  final contactnumberController = TextEditingController();
+
+  final purokController = TextEditingController();
+
+  final brgyController = TextEditingController();
+
+  final cityController = TextEditingController();
+
+  final provinceController = TextEditingController();
+
+  final dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +58,7 @@ class SignupScreen extends StatelessWidget {
             ),
             Center(
               child: TextWidget(
-                text: inadmin! ? 'Register a Rescuer' : 'Register here',
+                text: widget.inadmin! ? 'Register a Rescuer' : 'Register here',
                 fontSize: 24,
                 fontFamily: 'Bold',
               ),
@@ -152,27 +166,105 @@ class SignupScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextFieldWidget(
-                        width: 125,
-                        label: 'Month',
-                        controller: monthController,
-                      ),
-                      TextFieldWidget(
-                        inputType: TextInputType.number,
-                        width: 85,
-                        label: 'Day',
-                        controller: dayController,
-                      ),
-                      TextFieldWidget(
-                        inputType: TextInputType.number,
-                        width: 125,
-                        label: 'Year',
-                        controller: yearController,
-                      ),
-                    ],
+                  Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Select Date',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'Bold',
+                                  color: primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const TextSpan(
+                                text: '*',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'Bold',
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            dateFromPicker(context);
+                          },
+                          child: SizedBox(
+                            width: 325,
+                            height: 50,
+                            child: TextFormField(
+                              enabled: false,
+                              style: TextStyle(
+                                fontFamily: 'Regular',
+                                fontSize: 14,
+                                color: primary,
+                              ),
+
+                              decoration: InputDecoration(
+                                suffixIcon: Icon(
+                                  Icons.calendar_month_outlined,
+                                  color: primary,
+                                ),
+                                hintStyle: const TextStyle(
+                                  fontFamily: 'Regular',
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                ),
+                                hintText: dateController.text,
+                                border: InputBorder.none,
+                                disabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Colors.red,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                errorStyle: const TextStyle(
+                                    fontFamily: 'Bold', fontSize: 12),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Colors.red,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+
+                              controller: dateController,
+                              // Pass the validator to the TextFormField
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -231,6 +323,36 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
+  void dateFromPicker(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              colorScheme: ColorScheme.light(
+                primary: primary,
+                onPrimary: Colors.white,
+                onSurface: Colors.grey,
+              ),
+            ),
+            child: child!,
+          );
+        },
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2050));
+
+    if (pickedDate != null) {
+      String formattedDate = DateFormat('MMMM, dd, yyyy').format(pickedDate);
+
+      setState(() {
+        dateController.text = formattedDate;
+      });
+    } else {
+      return null;
+    }
+  }
+
   register(context) async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -241,27 +363,21 @@ class SignupScreen extends StatelessWidget {
           contactnumberController.text,
           '${purokController.text}, ${brgyController.text}, ${cityController.text}, ${provinceController.text}',
           emailController.text,
-          inrescuer ? 'Rescuer' : 'User',
-          '${monthController.text}, ${dayController.text}, ${yearController.text}');
+          widget.inrescuer ? 'Rescuer' : 'User',
+          dateController.text);
 
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      // await FirebaseAuth.instance.signInWithEmailAndPassword(
+      //     email: emailController.text, password: passwordController.text);
 
       showToast('Account created succesfully!');
 
-      if (inadmin!) {
+      if (widget.inadmin!) {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => const AdminRescuerScreen()));
       } else {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => HomeTab(
-                  inrescuer: inrescuer,
-                )));
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => LoginScreen()));
       }
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => HomeTab(
-                inrescuer: inrescuer,
-              )));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showToast('The password provided is too weak.');

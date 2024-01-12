@@ -22,6 +22,7 @@ class _AdminRequestScreenState extends State<AdminRequestScreen> {
         child: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection('Request')
+                .where('status', isEqualTo: 'Pending')
                 .orderBy('dateTime', descending: true)
                 .snapshots(),
             builder:

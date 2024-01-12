@@ -27,8 +27,8 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     final tabs = [
       const HomeScreen(),
-      const RequestHistoryScreen(),
       const RescueRequestScreen(),
+      const RequestHistoryScreen(),
       const ProfileScreen(),
     ];
 
@@ -67,9 +67,9 @@ class _HomeTabState extends State<HomeTab> {
                     const BottomNavigationBarItem(
                         label: 'Home', icon: Icon(Icons.home)),
                     const BottomNavigationBarItem(
-                        label: 'History', icon: Icon(Icons.history)),
-                    const BottomNavigationBarItem(
                         label: 'Report', icon: Icon(Icons.add_circle_outlined)),
+                    const BottomNavigationBarItem(
+                        label: 'History', icon: Icon(Icons.history)),
                     const BottomNavigationBarItem(
                         label: 'Profile', icon: Icon(Icons.person)),
                   ],

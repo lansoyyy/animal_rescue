@@ -4,7 +4,6 @@ import 'package:animal_rescue/widgets/text_widget.dart';
 import 'package:animal_rescue/widgets/textfield_widget.dart';
 import 'package:animal_rescue/widgets/toast_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart' as path;
@@ -166,7 +165,9 @@ class _RescuerProfileScreenState extends State<RescuerProfileScreen> {
                     CircleAvatar(
                       minRadius: 50,
                       maxRadius: 50,
-                      backgroundImage: NetworkImage(data['profilePicture']),
+                      backgroundImage: NetworkImage(
+                        data['profilePicture'],
+                      ),
                     ),
                     TextButton(
                       onPressed: () {

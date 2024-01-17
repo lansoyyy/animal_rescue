@@ -2,7 +2,6 @@ import 'package:animal_rescue/utils/colors.dart';
 import 'package:animal_rescue/widgets/button_widget.dart';
 import 'package:animal_rescue/widgets/text_widget.dart';
 import 'package:animal_rescue/widgets/textfield_widget.dart';
-import 'package:animal_rescue/widgets/toast_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +10,8 @@ import 'package:path/path.dart' as path;
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:io';
+
+import '../widgets/toast_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -252,7 +253,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               TextFieldWidget(
                                 width: 175,
-                                label: 'Municiplaity/City',
+                                label: 'Municipality/City',
                                 controller: cityController,
                               ),
                               TextFieldWidget(
@@ -309,12 +310,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: primary,
                       label: 'Edit Profile',
                       onPressed: () async {
+                        final fname = fnameController.text.split(' ')[0];
+
                         await FirebaseFirestore.instance
                             .collection('Users')
                             .doc(data.id)
                             .update({
                           'name':
-                              '${fnameController.text} ${mnameController.text}. ${lnameController.text}',
+                              '$fname ${mnameController.text[0]}. ${lnameController.text}',
                           'address':
                               '${purokController.text}, ${brgyController.text}, ${cityController.text}, ${provinceController.text}',
                           'bday':
